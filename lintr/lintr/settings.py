@@ -57,6 +57,7 @@ ROOT_URLCONF = 'lintr.urls'
 
 WSGI_APPLICATION = 'lintr.wsgi.application'
 
+TEMPLATE_DIRS = BASE_DIR,
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
@@ -86,6 +87,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-REPOSITORY_STORAGE_ROOT = '.'
-REPORTS_ROOT = '.'
+REPOSITORY_STORAGE_ROOT = os.path.join(BASE_DIR, 'repositories')
+
+UPLOAD_ROOT = os.path.join(BASE_DIR, 'uploads')
+
+REPORTS_ROOT = os.path.join(BASE_DIR, 'reports')

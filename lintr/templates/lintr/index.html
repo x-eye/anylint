@@ -1,0 +1,20 @@
+<html>
+<head>
+</head>
+<body>
+    <div class="form" id="repository-url-form">
+        <form action="/repos/url-create" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ url_form.as_p }}
+            <input type="submit" value="Submit" />
+        </form>
+    </div>
+    <div class="form" id="repository-file-form">
+        <form action="/repos/file-create" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ file_form.as_p }}
+            <input type="submit" value="Submit" />
+        </form>
+    </div>
+</body>
+</html>
