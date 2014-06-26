@@ -4,6 +4,7 @@ import shutil
 from django.conf import settings
 from django.views.generic.edit import CreateView
 from .models import Repository
+from tasks.prepare.archive import unpack, ArchiveFormatError
 
 
 class CreateRepoView(CreateView):
@@ -42,4 +43,9 @@ class CreateRepoFileView(CreateRepoView):
 
     def populate_repo(self):
         path = os.path.join(settings.REPOSITORY_STORAGE_ROOT, str(self.object.pk))
-        shutil.copy(self.object.file.path, path)
+
+        # try to unpack incoming file if it is an archive or copy to the destination folder otherwise
+        try:
+            unpack(self.object.file.path, path)
+        except ArchiveFormatError:
+            shutil.copy(self.object.file.path, path)
