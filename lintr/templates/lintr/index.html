@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="app">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>Check your code with lintr.org</title>
@@ -10,27 +10,61 @@
 		<!-- Optional theme -->
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 		
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
+
 		<!-- Latest compiled and minified JavaScript -->
-		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		<!--<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.js"></script>-->
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular-route.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular-resource.js"></script>
     </head>
     <body>
-    	<div class="container">
-	    	<div class="page-header">
-			  <h1>Check your code NOW! <br />
-			  	<small>Somebody forces an unreadable pull-request? Send him to us :)</small>
-			  </h1>
-			</div>
-			
-			<div class="jumbotron">
-				<h1>Check your code right here!</h1>
-				<div class="input-group">
-				  <span class="input-group-addon">Repo URL here:</span>
-				  <input type="text" class="form-control" placeholder="http://github.com/user/repo.git">
-			  	  <span class="input-group-btn">
-			        <button class="btn btn-default" type="button">Start!</button>
-			      </span>
-				</div>
-			</div>
-		</div>
+        <div ng-view></div>
+        <script type="text/ng-template" id="mainTemplate">
+        </script>
+
+        <script type="text/ng-template" id="projectTemplate">
+            <div class="container">
+                <div class="page-header">
+                  <h1>Check your code NOW! <br />
+                    <small>Somebody forces an unreadable pull-request? Send him to us :)</small>
+                  </h1>
+                </div>
+
+                <div class="jumbotron">
+                    <h1>Check your code right here!</h1>
+                    <div repo-load></div>
+                    <div class="input-group">
+                      <span class="input-group-addon">or simply give us your files to check:</span>
+                      <input type="file" class="form-control" name="upload" placeholder="http://github.com/user/repo.git">
+                      <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" id="upload-code-btn">Upload!</button>
+                      </span>
+                    </div>
+                </div>
+            </div>
+        </script>
+
+        <script type="text/ng-template" id="repoLoadTemplate">
+            <div class="input-group">
+              <span class="input-group-addon">Repo URL here:</span>
+              <input type="text" class="form-control" name="repository" placeholder="http://github.com/user/repo.git" ng-model="repository">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button" id="register-url-btn" ng-click="loadRepo()">Start!</button>
+              </span>
+            </div>
+        </script>
+
+        <script type=text/ng-template" id="classifyTemplate">
+            <p>Классификатор</p>
+        </script>
+
+    <!-- postpone javascript load -->
+    <script src="/static/js/controllers.js"></script>
+    <script src="/static/js/directives.js"></script>
+    <script src="/static/js/services.js"></script>
+    <script src="/static/js/app.js"></script>
 	</body>
 </html>

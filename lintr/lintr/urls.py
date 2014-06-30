@@ -1,9 +1,11 @@
+import os
 from django.conf.urls import patterns, include, url
 from django.conf.urls.static import static
 from django.conf import settings
 
 from django.contrib import admin
 # import apps
+
 
 admin.autodiscover()
 
@@ -14,6 +16,8 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^repos/', include('apps.repos.urls')),
+
+    url(r'^api/0.0.1', include('apps.restful.urls')),
 
     url(r'^$', 'lintr.views.index', name='index')
 )

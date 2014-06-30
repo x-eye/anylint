@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'apps.repos',
     'apps.lint',
     'apps.report',
+    'apps.restful',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -86,7 +87,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 REPOSITORY_STORAGE_ROOT = os.path.join(BASE_DIR, 'repositories')
